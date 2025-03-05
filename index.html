@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endocrinology Discussion (6)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            user-select: none; /* يمنع تحديد النص */
+            -webkit-user-select: none; /* لمتصفحات WebKit مثل Chrome وSafari */
+            -moz-user-select: none; /* لمتصفح Firefox */
+            -ms-user-select: none; /* لمتصفح Internet Explorer/Edge */
+        }
+        @media print { /* إخفاء الصفحة عند الطباعة */
+            body { 
+                display: none;
+            }
+        }
+
+        .quiz-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        .timer {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            display: none;
+        }
+        .incorrect {
+            color: red;
+        }
+        .correct {
+            color: green;
+        }
+        .question-result {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        img {
+            pointer-events: none; /* يمنع سحب الصور */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Endocrinology Discussion (6)</h1>
+        <div class="timer" id="timer">Time remaining: 60 seconds</div>
+
+        <div class="question" id="question-1">
+            <p>1- A 43-year-old man is admitted to hospital with pneumonia. His past medical history includes Addison's disease for which he takes hydrocortisone (20mg in the mornings and 10mg in the afternoon). What is the most appropriate action with respect to his steroid dose?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="Continue to take the same dose"> Continue to take the same dose</label>
+                <label><input type="radio" name="q1" value="Double hydrocortisone to 40mg mornings and 20mg afternoon"> Double hydrocortisone to 40mg mornings and 20mg afternoon</label>
+                <label><input type="radio" name="q1" value="Halve hydrocortisone to 10mg mornings and 5mg afternoon"> Halve hydrocortisone to 10mg mornings and 5mg afternoon</label>
+                <label><input type="radio" name="q1" value="Continue to take the same dose + prescribe a proton pump inhibitor"> Continue to take the same dose + prescribe a proton pump inhibitor</label>
+                <label><input type="radio" name="q1" value="Continue the same morning dose + stop the afternoon dose"> Continue the same morning dose + stop the afternoon dose</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-2">
+            <p>2- You review a 68-year-old man who has chronic obstructive pulmonary disease (COPD). Each year he typically has around 7-8 courses of oral prednisolone to treat infective exacerbations of his COPD. Which one of the following adverse effects is linked to long-term steroid use?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="Osteomalacia"> Osteomalacia</label>
+                <label><input type="radio" name="q2" value="Enophthalmos"> Enophthalmos</label>
+                <label><input type="radio" name="q2" value="Leukopenia"> Leukopenia</label>
+                <label><input type="radio" name="q2" value="Avascular necrosis"> Avascular necrosis</label>
+                <label><input type="radio" name="q2" value="Constipation"> Constipation</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-3">
+            <p>3- A 32-year-old man is evaluated at a routine clinic visit for coronary risk factors. He reports no tobacco use, his systemic blood pressure is normal, and he does not have diabetes. He is otherwise healthy. His family history is notable for high cholesterol in his mother and maternal grandfather and grandmother. Physical examination shows tendon xanthomas. A fasting cholesterol is notable for a low-density lipoprotein (LDL) cholesterol level of 387 mg/dL. Which of the following is the most likely genetic disorder affecting this individual?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="Apolipoprotein (apo) A-V deficiency"> Apolipoprotein (apo) A-V deficiency</label>
+                <label><input type="radio" name="q3" value="Familial defective apoB-100"> Familial defective apoB-100</label>
+                <label><input type="radio" name="q3" value="Familial hepatic lipase deficiency"> Familial hepatic lipase deficiency</label>
+                <label><input type="radio" name="q3" value="Familial hypercholesterolemia"> Familial hypercholesterolemia</label>
+                <label><input type="radio" name="q3" value="Lipoprotein lipase deficiency"> Lipoprotein lipase deficiency</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-4">
+            <p>4- A 43-year-old man requests a 'medical' as he is concerned about his risk of heart disease. His father died at the age of 45-years following a myocardial infarction. His lipid profile is as follows:
+            HDL 1.4 mmol/l
+            LDL 5.7 mmol/l
+            Triglycerides 1.3 mmol/l
+            Total cholesterol 8.2 mmol/l
+            Clinical examination reveals tendon xanthomata around his ankles. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="Familial hypercholesterolaemia (heterozygous)"> Familial hypercholesterolaemia (heterozygous)</label>
+                <label><input type="radio" name="q4" value="Nephrotic syndrome"> Nephrotic syndrome</label>
+                <label><input type="radio" name="q4" value="Mixed hyperlipidaemia"> Mixed hyperlipidaemia</label>
+                <label><input type="radio" name="q4" value="Familial hypercholesterolaemia (homozygous)"> Familial hypercholesterolaemia (homozygous)</label>
+                <label><input type="radio" name="q4" value="Hypothyroidism"> Hypothyroidism</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-5">
+            <p>5- The first-line treatment in remnant hyperlipidaemia (dysbetalipoproteinaemia) is:</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="Ursodeoxycholic acid"> Ursodeoxycholic acid</label>
+                <label><input type="radio" name="q5" value="Vitamin A"> Vitamin A</label>
+                <label><input type="radio" name="q5" value="Statins"> Statins</label>
+                <label><input type="radio" name="q5" value="Fish oil"> Fish oil</label>
+                <label><input type="radio" name="q5" value="Fibrates"> Fibrates</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-6">
+            <p>6- A 52-year-old has a fasting lipid profile checked as part of an annual occupational health check. Combined with his blood pressure and current smoking status his 10-year risk of cardiovascular disease is calculated to be 23% percent. Following appropriate counselling he chooses to start atorvastatin 20mg. He is followed up 3 months later when a full lipid profile is repeated. What should his target be?</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="A greater than 40% reduction in non-HDL cholesterol"> A greater than 40% reduction in non-HDL cholesterol</label>
+                <label><input type="radio" name="q6" value="Total cholesterol < 5 mmol/l"> Total cholesterol < 5 mmol/l</label>
+                <label><input type="radio" name="q6" value="Target cholesterol is inappropriate in this situation"> Target cholesterol is inappropriate in this situation</label>
+                <label><input type="radio" name="q6" value="Total cholesterol < 4 mmol/l"> Total cholesterol < 4 mmol/l</label>
+                <label><input type="radio" name="q6" value="Total cholesterol : HDL ratio < 4"> Total cholesterol : HDL ratio < 4</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-7">
+            <p>7- You are reviewing the blood results for a patient who was started on atorvastatin 20mg on for primary prevention 3 months ago:
+            3 months ago prior to starting treatment ..
+            Total cholesterol 6.3 mmol/l
+            HDL cholesterol 1.0 mmol/l
+            Non-HDL cholesterol 4.0 mmol/l
+            Triglyceride 1.3 mmol/l
+            Recent ..
+            Total cholesterol 4.2 mmol/l
+            HDL cholesterol 1.1 mmol/l
+            Non-HDL cholesterol 2.1 mmol/l
+            Triglyceride 1.2 mmol/l
+            Liver function tests are normal.
+            What is the most appropriate course of action?</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="Reduce atorvastatin to 10mg on"> Reduce atorvastatin to 10mg on</label>
+                <label><input type="radio" name="q7" value="Make no changes to medication"> Make no changes to medication</label>
+                <label><input type="radio" name="q7" value="Increase atorvastatin to 40mg on"> Increase atorvastatin to 40mg on</label>
+                <label><input type="radio" name="q7" value="Check creatine kinase"> Check creatine kinase</label>
+                <label><input type="radio" name="q7" value="Check compliance"> Check compliance</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-8">
+            <p>8- Which of the following secondary causes of hyperlipidaemia result in predominantly hypercholesterolaemia, as opposed to hypertriglyceridaemia?</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="Hypothyroidism"> Hypothyroidism</label>
+                <label><input type="radio" name="q8" value="Obesity"> Obesity</label>
+                <label><input type="radio" name="q8" value="Liver disease"> Liver disease</label>
+                <label><input type="radio" name="q8" value="Bendrofluazide"> Bendrofluazide</label>
+                <label><input type="radio" name="q8" value="Chronic renal failure"> Chronic renal failure</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-9">
+            <p>9- Which of the following secondary causes of hyperlipidaemia result in predominantly hypercholesterolaemia, as opposed to hypertriglyceridaemia?</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="Diabetes mellitus"> Diabetes mellitus</label>
+                <label><input type="radio" name="q9" value="Bendrofluazide"> Bendrofluazide</label>
+                <label><input type="radio" name="q9" value="Nephrotic syndrome"> Nephrotic syndrome</label>
+                <label><input type="radio" name="q9" value="Alcohol"> Alcohol</label>
+                <label><input type="radio" name="q9" value="Obesity"> Obesity</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-10">
+            <p>10- A 22-year-old female presents with recurrent painful oral ulceration Examination reveals signs of oral CandidaI infection. Which one of the following would most suggest type 1 polyglandular syndrome?</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="Hypocalcaemia"> Hypocalcaemia</label>
+                <label><input type="radio" name="q10" value="Rheumatoid arthritis"> Rheumatoid arthritis</label>
+                <label><input type="radio" name="q10" value="Type II diabetes mellitus"> Type II diabetes mellitus</label>
+                <label><input type="radio" name="q10" value="Coeliac disease"> Coeliac disease</label>
+                <label><input type="radio" name="q10" value="Hypercalcaemia"> Hypercalcaemia</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-11">
+            <p>11- Each one of the following is associated with autoimmune polyendocrinopathy syndrome type 1 except:</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="Chronic mucocutaneous candidiasis"> Chronic mucocutaneous candidiasis</label>
+                <label><input type="radio" name="q11" value="Addison's disease"> Addison's disease</label>
+                <label><input type="radio" name="q11" value="Primary hyperparathyroidism"> Primary hyperparathyroidism</label>
+                <label><input type="radio" name="q11" value="Autosomal recessive inheritance"> Autosomal recessive inheritance</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-12">
+            <p>12- A 25-year-old man with a family history of multiple endocrine neoplasia type 1 is being reviewed in a clinic.. What is the single most useful investigation to monitor such patients?</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="Short synacthen test"> Short synacthen test</label>
+                <label><input type="radio" name="q12" value="Urinary catecholamines"> Urinary catecholamines</label>
+                <label><input type="radio" name="q12" value="Serum calcium"> Serum calcium</label>
+                <label><input type="radio" name="q12" value="Thyroid function tests"> Thyroid function tests</label>
+                <label><input type="radio" name="q12" value="Serum prolactin"> Serum prolactin</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-13">
+            <p>13- A 32 year old man is referred having been found to have hypercalcaemia and a high PTH level. He has recently been investigated for episodes of sweating, lightheadedness and confusion, which were helped by eating sugary foods. Which of the following is associated with MEN 1 ?</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="Acromegaly"> Acromegaly</label>
+                <label><input type="radio" name="q13" value="Cerebellar haemangioblastoma"> Cerebellar haemangioblastoma</label>
+                <label><input type="radio" name="q13" value="Marfinoid habitus"> Marfinoid habitus</label>
+                <label><input type="radio" name="q13" value="Medullary thyroid carcinoma"> Medullary thyroid carcinoma</label>
+                <label><input type="radio" name="q13" value="Pheochromocytoma"> Pheochromocytoma</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-14">
+            <p>14- Which one of the following is most likely to be seen in a patient with multiple endocrine neoplasia (MEN) type I ?</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="Phaeochromocytoma"> Phaeochromocytoma</label>
+                <label><input type="radio" name="q14" value="Insulinoma"> Insulinoma</label>
+                <label><input type="radio" name="q14" value="Marfanoid body habitus"> Marfanoid body habitus</label>
+                <label><input type="radio" name="q14" value="Medullary thyroid carcinoma"> Medullary thyroid carcinoma</label>
+                <label><input type="radio" name="q14" value="RET gene"> RET gene</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-15">
+            <p>15- A 39-year-old man presents with a three-month history of depression. The patient recently lost a family member and around the same period began to feel unwell with constipation and a depressed mood. He has started taking analgesia for a sharp pain in his right lower back that often radiates towards his front. The most appropriate investigation is:</p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="Serum parathyroid hormone"> Serum parathyroid hormone</label>
+                <label><input type="radio" name="q15" value="Serum thyroid stimulating hormone"> Serum thyroid stimulating hormone</label>
+                <label><input type="radio" name="q15" value="Colonoscopy"> Colonoscopy</label>
+                <label><input type="radio" name="q15" value="Fasting serum calcium"> Fasting serum calcium</label>
+                <label><input type="radio" name="q15" value="MRI scan"> MRI scan</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-16">
+            <p>16- A 21-year-old woman complains of urinary frequency, polydipsia, constipation, and bone pain. Her symptoms started 2 weeks ago and prior to this she would urinate twice a day and never at night. She has also noticed general malaise and some pain in her left flank. A urine dipstick is normal. The most appropriate investigation is:</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="Serum phosphate"> Serum phosphate</label>
+                <label><input type="radio" name="q16" value="Serum calcium"> Serum calcium</label>
+                <label><input type="radio" name="q16" value="Parathyroid hormone (PTH)"> Parathyroid hormone (PTH)</label>
+                <label><input type="radio" name="q16" value="Plasma glucose"> Plasma glucose</label>
+                <label><input type="radio" name="q16" value="Serum potassium"> Serum potassium</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-17">
+            <p>17- Which one of the following is not associated with primary hyperparathyroidism ?</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="Hypotension"> Hypotension</label>
+                <label><input type="radio" name="q17" value="Multiple endocrine neoplasia type 1"> Multiple endocrine neoplasia type 1</label>
+                <label><input type="radio" name="q17" value="Multiple endocrine neoplasia type 2a"> Multiple endocrine neoplasia type 2a</label>
+                <label><input type="radio" name="q17" value="Depression"> Depression</label>
+                <label><input type="radio" name="q17" value="Pancreatitis"> Pancreatitis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-18">
+            <p>18- Which one of the following features is least associated with primary hyperparathyroidism ?</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="Depression"> Depression</label>
+                <label><input type="radio" name="q18" value="Polydipsia"> Polydipsia</label>
+                <label><input type="radio" name="q18" value="Sensory loss"> Sensory loss</label>
+                <label><input type="radio" name="q18" value="Peptic ulceration"> Peptic ulceration</label>
+                <label><input type="radio" name="q18" value="Hypertension"> Hypertension</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-19">
+            <p>19- A 60-year-old man who is Known to have lung cancer comes for review. For the past three weeks he has lost his appetite, has been feeling sick and generally feels tired. On examination he appears to be mildly dehydrated. You order some blood tests:<br>
+                Calcium 3.12 mmol/l<br>
+                Albumin 40 g/l<br>
+                Glucose (random) 6.7 mmol/l<br>
+                Urea 10,2 mmol/l<br>
+                Creatinine 115 umol/l<br>
+                Which one of his existing medications is most likely to be contributing to his presentation?</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="Amlodipine"> Amlodipine</label>
+                <label><input type="radio" name="q19" value="Simvastatin"> Simvastatin</label>
+                <label><input type="radio" name="q19" value="Bendroflumethiazide"> Bendroflumethiazide</label>
+                <label><input type="radio" name="q19" value="Aspirin"> Aspirin</label>
+                <label><input type="radio" name="q19" value="Lisinopril"> Lisinopril</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-20">
+            <p>20- A 69-year-old female with a history of multiple myeloma is admitted with confusion. The following results are obtained:<br>
+                Na 147 mmol/l<br>
+                K 4.7 mmol/l<br>
+                Urea 14.2 mmol/l<br>
+                Creatinine 102 µmol/l<br>
+                Adjusted calcium 3.9 mmol/l<br>
+                What is the most appropriate initial management?</p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="IV 0.45% saline"> IV 0.45% saline</label>
+                <label><input type="radio" name="q20" value="IV zoledronic acid"> IV zoledronic acid</label>
+                <label><input type="radio" name="q20" value="Oral prednisolone"> Oral prednisolone</label>
+                <label><input type="radio" name="q20" value="IV pamidronate"> IV pamidronate</label>
+                <label><input type="radio" name="q20" value="IV 0.9% saline"> IV 0.9% saline</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-21">
+            <p>21- A 54-year-old woman presents to her GP complaining of a change in her breathing sound. She first noticed numbness, particularly in her fingers and toes, three months ago but attributed this to the cold weather. Her partner now reports hearing a high pitched, harsh sound while she is sleeping. Her BMI is 27. While measuring blood pressure, you notice the patient’s wrist flexing. The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q21" value="Obstructive sleep apnoea"> Obstructive sleep apnoea</label>
+                <label><input type="radio" name="q21" value="Hypocalcaemia"> Hypocalcaemia</label>
+                <label><input type="radio" name="q21" value="DiGeorge syndrome"> DiGeorge syndrome</label>
+                <label><input type="radio" name="q21" value="Guillain–Barré syndrome"> Guillain–Barré syndrome</label>
+                <label><input type="radio" name="q21" value="Raynaud’s syndrome"> Raynaud’s syndrome</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-22">
+            <p>22- Each one of the following is associated with pseudohypoparathyroidism, except:</p>
+            <div class="options">
+                <label><input type="radio" name="q22" value="Low calcium levels"> Low calcium levels</label>
+                <label><input type="radio" name="q22" value="Low PTH levels"> Low PTH levels</label>
+                <label><input type="radio" name="q22" value="Shortened 4th and 5th metacarpals"> Shortened 4th and 5th metacarpals</label>
+                <label><input type="radio" name="q22" value="Low IQ"> Low IQ</label>
+                <label><input type="radio" name="q22" value="Short stature"> Short stature</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-23">
+            <p>23- Following commencement of nasogastric feeding, which biochemical abnormality is most likely to cause drowsiness ?</p>
+            <div class="options">
+                <label><input type="radio" name="q23" value="Hyperglycaemia"> Hyperglycaemia</label>
+                <label><input type="radio" name="q23" value="Hypernatremia"> Hypernatremia</label>
+                <label><input type="radio" name="q23" value="Hypocalcemia"> Hypocalcemia</label>
+                <label><input type="radio" name="q23" value="Hypophosphatemia"> Hypophosphatemia</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-24">
+            <p>24- A 33 year old man is found to have a significant postural hypotension with a drop in systolic blood pressure from 130/75 to 100/60 mmHg. Further investigations reveal elevated renin levels but low aldosterone levels on sitting. Where in the adrenal gland is the enzyme aldosterone synthase located?</p>
+            <div class="options">
+                <label><input type="radio" name="q24" value="Chromaffin cells"> Chromaffin cells</label>
+                <label><input type="radio" name="q24" value="Medulla"> Medulla</label>
+                <label><input type="radio" name="q24" value="Zona fasciculata"> Zona fasciculata</label>
+                <label><input type="radio" name="q24" value="Zona glomerulosa"> Zona glomerulosa</label>
+                <label><input type="radio" name="q24" value="Zona reticularis"> Zona reticularis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-25">
+            <p>25- 33 years old male with ESRD on regular hemodialysis. Serum potassium 6.9 meq/ L. Which food combination would be the most likely to cause high potassium concentration?</p>
+            <div class="options">
+                <label><input type="radio" name="q25" value="Milk, Butter, plain yoghurt"> Milk, Butter, plain yoghurt</label>
+                <label><input type="radio" name="q25" value="Tomato, potato, banana"> Tomato, potato, banana</label>
+                <label><input type="radio" name="q25" value="Milk, ham, chicken"> Milk, ham, chicken</label>
+                <label><input type="radio" name="q25" value="Cereal, toast, biscuits"> Cereal, toast, biscuits</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-26">
+            <p>26- Each one of the following is associated with hyperkalaemia, except:</p>
+            <div class="options">
+                <label><input type="radio" name="q26" value="Rhabdomyolysis"> Rhabdomyolysis</label>
+                <label><input type="radio" name="q26" value="Carbenoxolone"> Carbenoxolone</label>
+                <label><input type="radio" name="q26" value="Acute renal failure"> Acute renal failure</label>
+                <label><input type="radio" name="q26" value="Ciclosporin"> Ciclosporin</label>
+                <label><input type="radio" name="q26" value="Addison's"> Addison's</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-27">
+            <p>27- Which one of the following conditions may cause hypokalaemia in association with hypertension?</p>
+            <div class="options">
+                <label><input type="radio" name="q27" value="Gitelman syndrome"> Gitelman syndrome</label>
+                <label><input type="radio" name="q27" value="21-hydroxylase deficiency"> 21-hydroxylase deficiency</label>
+                <label><input type="radio" name="q27" value="Bartter's syndrome"> Bartter's syndrome</label>
+                <label><input type="radio" name="q27" value="Phaeochromocytoma"> Phaeochromocytoma</label>
+                <label><input type="radio" name="q27" value="11 beta hydroxylase deficiency"> 11 beta hydroxylase deficiency</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-28">
+            <p>28- Which one of the following is a recognised cause of hypokalemia associated with hypertension ?</p>
+            <div class="options">
+                <label><input type="radio" name="q28" value="Liddle's syndrome"> Liddle's syndrome</label>
+                <label><input type="radio" name="q28" value="Bartter's syndrome"> Bartter's syndrome</label>
+                <label><input type="radio" name="q28" value="Gitelman syndrome"> Gitelman syndrome</label>
+                <label><input type="radio" name="q28" value="Ciclosporin"> Ciclosporin</label>
+                <label><input type="radio" name="q28" value="Renal tubular acidosis"> Renal tubular acidosis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-29">
+            <p>29- A 16-year-old female presents with Acne, hypertension, amenorrhea, DM, and increasing weight. Which of the following features would be most suggestive of your diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q29" value="Acanthosis Nigricans"> Acanthosis Nigricans</label>
+                <label><input type="radio" name="q29" value="Hirsutism"> Hirsutism</label>
+                <label><input type="radio" name="q29" value="Interscapular fat pad"> Interscapular fat pad</label>
+                <label><input type="radio" name="q29" value="Moon face"> Moon face</label>
+                <label><input type="radio" name="q29" value="Proximal myopathy"> Proximal myopathy</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-30">
+            <p>30- Which of the following is the most common cause of Cushing syndrome?</p>
+            <div class="options">
+                <label><input type="radio" name="q30" value="Pituitary adenoma"> Pituitary adenoma</label>
+                <label><input type="radio" name="q30" value="Adrenocortical adenoma"> Adrenocortical adenoma</label>
+                <label><input type="radio" name="q30" value="Adrenocortical carcinoma"> Adrenocortical carcinoma</label>
+                <label><input type="radio" name="q30" value="Ectopic ACTH secretion"> Ectopic ACTH secretion</label>
+                <label><input type="radio" name="q30" value="McCune-Albright syndrome"> McCune-Albright syndrome</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-31">
+            <p>31- Which one of the following is the most common non-iatrogenic cause of Cushing's syndrome?</p>
+            <div class="options">
+                <label><input type="radio" name="q31" value="Ectopic ACTH production"> Ectopic ACTH production</label>
+                <label><input type="radio" name="q31" value="Adrenal adenoma"> Adrenal adenoma</label>
+                <label><input type="radio" name="q31" value="Micronodular adrenal dysplasia"> Micronodular adrenal dysplasia</label>
+                <label><input type="radio" name="q31" value="Adrenal carcinoma"> Adrenal carcinoma</label>
+                <label><input type="radio" name="q31" value="Pituitary tumour"> Pituitary tumour</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-32">
+            <p>32- A 62-year-oId man is investigated for hypertension and proximal myopathy. On examination he is noted to have abdominal striae. Which one of the following is most associated with ectopic ACTH secretion?</p>
+            <div class="options">
+                <label><input type="radio" name="q32" value="Carcinoid tumour"> Carcinoid tumour</label>
+                <label><input type="radio" name="q32" value="Small cell lung cancer"> Small cell lung cancer</label>
+                <label><input type="radio" name="q32" value="Cardiac myxoma"> Cardiac myxoma</label>
+                <label><input type="radio" name="q32" value="Squamous cell lung cancer"> Squamous cell lung cancer</label>
+                <label><input type="radio" name="q32" value="Adrenal carcinoma"> Adrenal carcinoma</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-33">
+            <p>33- A 56 year old man with recently diagnosed lung cancer has noticed weight gain, easy bruising of his skin, increased thirst and difficulty climbing stairs. Which type of lung cancer is associated with this endocrinological picture?</p>
+            <div class="options">
+                <label><input type="radio" name="q33" value="Adenocarcinoma"> Adenocarcinoma</label>
+                <label><input type="radio" name="q33" value="Carcinoid tumour"> Carcinoid tumour</label>
+                <label><input type="radio" name="q33" value="Large cell carcinoma"> Large cell carcinoma</label>
+                <label><input type="radio" name="q33" value="Mesothelioma"> Mesothelioma</label>
+                <label><input type="radio" name="q33" value="Squamous cell carcinoma"> Squamous cell carcinoma</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-34">
+            <p>34- Cushing's syndrome is most typically associated with which one of the following abnormalities?</p>
+            <div class="options">
+                <label><input type="radio" name="q34" value="Hypokalaemic metabolic acidosis"> Hypokalaemic metabolic acidosis</label>
+                <label><input type="radio" name="q34" value="Hyperkalaemic metabolic alkalosis"> Hyperkalaemic metabolic alkalosis</label>
+                <label><input type="radio" name="q34" value="Hypocalcaemic metabolic acidosis"> Hypocalcaemic metabolic acidosis</label>
+                <label><input type="radio" name="q34" value="Hypokalaemic metabolic alkalosis"> Hypokalaemic metabolic alkalosis</label>
+                <label><input type="radio" name="q34" value="Hyperkalaemic metabolic acidosis"> Hyperkalaemic metabolic acidosis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-35">
+            <p>35- A 28-year-old woman has noticed a change in her appearance; most notably her clothes do not fit properly and are especially tight around the waist. Her face appears flushed and more rounded than usual, despite exercising regularly and eating healthily her weight has steadily increased over the last 3 weeks. On visiting her GP, he notices her blood pressure has increased since her last visit and she has bruises on her arm. She is especially worried about a brain tumour. The most appropriate initial investigation would be:</p>
+            <div class="options">
+                <label><input type="radio" name="q35" value="Low-dose dexamethasone test"> Low-dose dexamethasone test</label>
+                <label><input type="radio" name="q35" value="High-dose dexamethasone test"> High-dose dexamethasone test</label>
+                <label><input type="radio" name="q35" value="Urinary catecholamines"> Urinary catecholamines</label>
+                <label><input type="radio" name="q35" value="Computed tomography (CT) scan"> Computed tomography (CT) scan</label>
+                <label><input type="radio" name="q35" value="Urinary free cortisol measurement"> Urinary free cortisol measurement</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-36">
+            <p>36- A 63 year old man presents to his family physician with a 1-month history of weight gain and difficulty climbing stairs. On clinical examination he is found to have a blood pressure of 182/85 mmHg, abdominal striae and bruising on his arms. An overnight dexamethasone test reveals a morning serum cortisol level of 153 nmol/L (5.55 ug/dl). Which of the following would be an appropriate next investigation?</p>
+            <div class="options">
+                <label><input type="radio" name="q36" value="24-hour urine free cortisol"> 24-hour urine free cortisol</label>
+                <label><input type="radio" name="q36" value="Adrenal vein sampling"> Adrenal vein sampling</label>
+                <label><input type="radio" name="q36" value="Bilateral inferior petrosal sinus sampling"> Bilateral inferior petrosal sinus sampling</label>
+                <label><input type="radio" name="q36" value="CT adrenals"> CT adrenals</label>
+                <label><input type="radio" name="q36" value="High-dose dexamethasone suppression test"> High-dose dexamethasone suppression test</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-37">
+            <p>37- A 20 years old man presents with a nine month history of weight gain. Prior to this he was of a normal weight and cannot identify any obvious lifestyle changes that would account for his obesity. On examination he is noted to have abdominal striae and a degree of proximal myopathy. Blood pressure is 130/80 mmHg. Bloods show the following:<br>
+                Na  141 mmol/1<br>
+                K  3.3 mmol/1<br>
+                Bicarbonate 26 mmol/1<br>
+                Urea 3.3 mmol/1<br>
+                Creatinine 72 µmol/1<br>
+                What is the most appropriate next test?</p>
+            <div class="options">
+                <label><input type="radio" name="q37" value="High-dose dexamethasone suppression test"> High-dose dexamethasone suppression test</label>
+                <label><input type="radio" name="q37" value="Plasma ACTH"> Plasma ACTH</label>
+                <label><input type="radio" name="q37" value="Short ACTH test"> Short ACTH test</label>
+                <label><input type="radio" name="q37" value="24 hour urinary free cortisol"> 24 hour urinary free cortisol</label>
+                <label><input type="radio" name="q37" value="Renin : aldosterone ratio"> Renin : aldosterone ratio</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-38">
+            <p>38- A 45-year-old woman is investigated for weight gain. She had been unwell for around four months and described a combination of symptoms including depression, facial male-pattern hair growth and reduced libido.<br>
+                During the work-up she was found to be hypertensive with a blood pressure of 170/100 mmHg.<br>
+                Which one of the following tests is most likely to be diagnostic?</p>
+            <div class="options">
+                <label><input type="radio" name="q38" value="Renin : aldosterone levels"> Renin : aldosterone levels</label>
+                <label><input type="radio" name="q38" value="High-dose dexamethasone suppression test"> High-dose dexamethasone suppression test</label>
+                <label><input type="radio" name="q38" value="Pelvic ultrasound"> Pelvic ultrasound</label>
+                <label><input type="radio" name="q38" value="Overnight dexamethasone suppression test"> Overnight dexamethasone suppression test</label>
+                <label><input type="radio" name="q38" value="24 hr urinary free cortisol"> 24 hr urinary free cortisol</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-39">
+            <p>39- A 38-year-old woman presents to a clinic complaining of changes in her appearance and weight gain. She has recently been through a divorce and attributed her weight gain to this. However, despite going to the gym her clothes are still tight, especially around her waist, her face seems puffy and flushed. The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q39" value="Hyperthyroidism"> Hyperthyroidism</label>
+                <label><input type="radio" name="q39" value="Cushing’s disease"> Cushing’s disease</label>
+                <label><input type="radio" name="q39" value="Acromegaly"> Acromegaly</label>
+                <label><input type="radio" name="q39" value="Hypothyroidism"> Hypothyroidism</label>
+                <label><input type="radio" name="q39" value="Diabetes"> Diabetes</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-40">
+            <p>40- A 33-year-old obese woman complains of tiredness. She has recently given birth to a healthy baby boy and is enjoying being a mother. However, she is becoming more reliant on her partner for support as she always feels exhausted and often becomes depressed. The patient has a poor appetite and often does not finish her meals, despite this she has gained 5 kg in the last 2 weeks. The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q40" value="Postpartum depression"> Postpartum depression</label>
+                <label><input type="radio" name="q40" value="Eating disorder"> Eating disorder</label>
+                <label><input type="radio" name="q40" value="Hyperthyroidism"> Hyperthyroidism</label>
+                <label><input type="radio" name="q40" value="Hypothyroidism"> Hypothyroidism</label>
+                <label><input type="radio" name="q40" value="Occult malignancy"> Occult malignancy</label>
+            </div>
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+        <button class="btn" id="submitBtn" onclick="evaluateQuiz()" style="display: none;">Submit Quiz</button>
+
+        <div class="result" id="result">
+            <h2>Results</h2>
+            <div id="score"></div>
+            <div id="answers-summary"></div>
+        </div>
+    </div>
+
+    <script>
+        // إضافة حدث للكيبورد لمنع حفظ الصفحة
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.key === "s") {
+                event.preventDefault();
+                alert("تم منع حفظ الصفحة!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع فتح أدوات المطور
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
+                event.preventDefault();
+                alert("تم تعطيل أدوات المطور!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع النقر بزر اليمين
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // يمنع فتح قائمة السياق
+            alert("النقر بزر الماوس الأيمن غير مسموح به.");
+        });
+
+        let currentQuestion = 1;
+        const totalQuestions = 40;
+        let score = 0;
+        let timerInterval;
+        const answers = {
+            q1: "Double hydrocortisone to 40mg mornings and 20mg afternoon",
+            q2: "Avascular necrosis",
+            q3: "Familial hypercholesterolemia",
+            q4: "Familial hypercholesterolaemia (heterozygous)",
+            q5: "Fibrates",
+            q6: "A greater than 40% reduction in non-HDL cholesterol",
+            q7: "Make no changes to medication",
+            q8: "Hypothyroidism",
+            q9: "Nephrotic syndrome",
+            q10: "Hypocalcaemia",
+            q11: "Primary hyperparathyroidism",
+            q12: "Serum calcium",
+            q13: "Acromegaly",
+            q14: "Insulinoma",
+            q15: "Fasting serum calcium",
+            q16: "Serum calcium",
+            q17: "Hypotension",
+            q18: "Sensory loss",
+            q19: "Bendroflumethiazide",
+            q20: "IV 0.9% saline",
+            q21: "Hypocalcaemia",
+            q22: "Low PTH levels",
+            q23: "Hypophosphatemia",
+            q24: "Zona glomerulosa",
+            q25: "Tomato, potato, banana",
+            q26: "Carbenoxolone",
+            q27: "11 beta hydroxylase deficiency",
+            q28: "Liddle's syndrome",
+            q29: "Proximal myopathy",
+            q30: "Pituitary adenoma",
+            q31: "Pituitary tumour",
+            q32: "Small cell lung cancer",
+            q33: "Carcinoid tumour",
+            q34: "Hypokalaemic metabolic alkalosis",
+            q35: "Urinary free cortisol measurement",
+            q36: "24-hour urine free cortisol",
+            q37: "24 hour urinary free cortisol",
+            q38: "Overnight dexamethasone suppression test",
+            q39: "Acromegaly",
+            q40: "Hypothyroidism"
+        };
+
+        function showQuestion() {
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q .style.display = index + 1 === currentQuestion ? 'block' : 'none';
+            });
+            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            clearInterval(timerInterval);
+            startTimer();
+            showQuestion();
+        }
+
+        function startTimer() {
+            let timeRemaining = 60;
+            document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    if (currentQuestion < totalQuestions) {
+                        nextQuestion();
+                    } else {
+                        evaluateQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        function evaluateQuiz() {
+            score = 0;
+            let summary = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                const correctAnswer = answers[`q${i}`];
+                const questionElement = document.getElementById(`question-${i}`);
+                const options = document.querySelectorAll(`input[name="q${i}"]`);
+                let questionSummary = `<p><strong>Question ${i}: </strong>${questionElement.querySelector('p').innerText}</p>`;
+
+                options.forEach(option => {
+                    const optionLabel = option.parentElement;
+                    if (option.value === correctAnswer) {
+                        optionLabel.style.color = 'green';
+                    } else if (selectedOption && selectedOption.value === option.value) {
+                        optionLabel.style.color = 'red';
+                    }
+                });
+
+                questionSummary += `<div>Answer: <strong>${selectedOption ? selectedOption.value : 'None selected'}</strong></div>`;
+                questionSummary += `<div>Correct answer: <strong>${correctAnswer}</strong></div>`;
+
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                    summary += questionSummary + `<p class="correct">Correct</p>`;
+                } else {
+                    summary += questionSummary + `<p class="incorrect">Incorrect</p>`;
+                }
+            }
+
+            document.getElementById('score').textContent = `Your score: ${score} out of ${totalQuestions}`;
+            document.getElementById('answers-summary').innerHTML = summary;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('timer').style.display = 'none'; 
+            document.querySelectorAll('.question').forEach((q) => q.style.display = 'none');
+
+            clearInterval(timerInterval);
+        }
+
+        window.onload = function() {
+            showQuestion();
+            startTimer();
+        };
+        
+        
+        function nextQuestion() {
+    // Increase the current question counter
+            currentQuestion++;
+
+            // Reset the timer
+            clearInterval(timerInterval); // Stop the current timer
+            startTimer(); // Start the timer from the beginning
+
+            // Show the next question
+            showQuestion();
+        }
+        
+    </script>
+</body>
+</html>
